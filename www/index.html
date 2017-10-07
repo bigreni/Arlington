@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<!-- Include jQuery Mobile stylesheets -->
+<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
+<!-- Include the jQuery library -->
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Include the jQuery Mobile library -->
+<!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<title>ART Arrivals</title>
+<link rel="stylesheet" href="css/jquery.sidr.dark.min.css">
+<script src="js/jquery.sidr.min.js"></script>
+</head>
+<body onload="onLoad();">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/admob.js"></script>
+    <script type="text/javascript" src="js/favorites.js"></script>
+    <div id="fullpage" data-role="page">
+		<div id="contentBox" class="box">
+                 <h3><a id="simplemenu" href="#sidr" style="font-size: xx-large; background-color: #008A5F; padding: 5px">&#9776;</a>
+               ART Arrivals</h3>
+            <div id="sidr">
+              <ul>
+                <li><a href="index.html" >Arrivals</a></li>
+                <li><a href="Favorites.html" >Favorites</a></li>
+              </ul>
+            </div>
+        <form>
+			<dl class="accs-form-list">
+				<dd>
+					<div class="accs-form-group">
+						<label class="accs-form-label accs-hidden" for="route">Route:</label>
+						<select class="dropList" id="route" name="route" onchange="LoadRouteInfo(this.value,'direction');" >
+							<option value="0">Select a Route</option>
+	                        <option value="41">ART 41 - Columbia Pike-Ballston-Court House</option>
+	                        <option value="42">ART 42 - Ballston-Pentagon</option>
+	                        <option value="43">ART 43 - Courthouse-Rosslyn-Crystal City</option>
+	                        <option value="45">ART 45 - Columbia Pike-Sequoia-Rosslyn</option>
+	                        <option value="51">ART 51 - Ballston - Virginia Hospital Center</option>
+	                        <option value="52">ART 52 - Ballston - Virginia Hospital Center - East Falls Church</option>
+	                        <option value="53">ART 53 - Ballston Metro-Old Glebe-East Falls Church-Westover</option>
+	                        <option value="54">ART 54 - Dominion Hills - East Falls Church</option>
+	                        <option value="55">ART 55 - East Falls Church – Lee Highway – Rosslyn</option>
+	                        <option value="61">ART 61 - Rosslyn-Court House Metro Shuttle</option>
+	                        <option value="62">ART 62 - Ballston Metro to Court House Metro</option>
+	                        <option value="74">ART 74 - Arl. Village-Arl. View-Pentagon City</option>
+	                        <option value="75">ART 75 - Shirlington - Wakefield HS - Ballston - Virginia Square</option>
+	                        <option value="77">ART 77 - Shirlington-Lyon Park-Court House</option>
+	                        <option value="84">ART 84 - Douglas Park-Nauck-Pentagon City</option>
+	                        <option value="87">ART 87 - Pentagon-Army Navy Drive-Shirlington</option>
+	                        <option value="92">ART 92 - Crystal City-Long Bridge Park/Boeing-Pentagon</option>
+	               		</select>
+               		</div>
+				
+					<div class="accs-form-group">
+						<label class="accs-form-label accs-hidden" for="stopSelect">Stop:</label>
+						<select class="dropList" id="stopSelect" name="stopSelect" onchange="LoadRouteDetails('routeinfo');" disabled="">
+							<option value="0">Select a Stop</option>
+						</select>
+					</div>
+				</dd>
+			</dl>
+		</form>
+
+        <div id="realTimeResultsContainer" name="realTimeResultsContainer" class="realtime-results"> 
+            <dl class="mini-module">
+            <h2 style="text-align:center;">
+                <button onclick="saveFavorites();" id="btnSave" style="border:none; background-color:green; color:black; visibility: hidden;">&#x271A; Add to favorites</button>
+            </h2>
+            <label id="message" style="font-size: large;"></label>
+		        <dd>
+			        <div id="realTimeResultsData" name="realTimeResultsData" style="text-align:center;">
+		        </dd> 
+            </dl>
+        </div>
+</div>
+</div>
+</body>
+</html>
