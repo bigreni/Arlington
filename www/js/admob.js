@@ -59,8 +59,8 @@
         $('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-        //initApp();
-        //askRating();
+        initApp();
+        askRating();
     }
 
 function askRating()
@@ -101,6 +101,7 @@ function LoadRouteInfo(iCodeID,method) {
         document.getElementById('btnSave').style.visibility = "hidden";
         document.getElementById('realTimeResultsContainer').style.display = "none";
         var stopDropdownList = document.getElementById('stopSelect');
+        $("#message").text('');
         var myXmlHttp = CreateXmlHttp();
         myXmlHttp.onreadystatechange = function () {
             if (myXmlHttp.readyState == 4) {
@@ -148,9 +149,11 @@ function LoadRouteDetails(method) {
 	   myXmlHttp.open("GET", "https://www.commuterpage.com/shared/services/get_realtime.cfc?&method=" + method + "&codeid=" + iCodeID + "&stop=" + routeStop + "&ds=" + myDateString);
 	   myXmlHttp.send(null);
 	   document.getElementById('btnSave').style.visibility = "visible";
+       $("#message").text('');
    }
    else
    {
+       $("#message").text('');
 	   document.getElementById('btnSave').style.visibility = "hidden";
        document.getElementById('realTimeResultsContainer').style.display = "none";
    }
