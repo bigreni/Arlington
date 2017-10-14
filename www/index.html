@@ -37,7 +37,7 @@
 					<div class="accs-form-group">
 						<label class="accs-form-label accs-hidden" for="route">Route:</label>
 						<select class="dropList" id="route" name="route" onchange="LoadRouteInfo(this.value,'direction');" >
-							<option value="0">Select a Route</option>
+							<option value="0" selected disabled>Select a Route</option>
 	                        <option value="41">ART 41 - Columbia Pike-Ballston-Court House</option>
 	                        <option value="42">ART 42 - Ballston-Pentagon</option>
 	                        <option value="43">ART 43 - Courthouse-Rosslyn-Crystal City</option>
@@ -61,7 +61,7 @@
 					<div class="accs-form-group">
 						<label class="accs-form-label accs-hidden" for="stopSelect">Stop:</label>
 						<select class="dropList" id="stopSelect" name="stopSelect" onchange="LoadRouteDetails('routeinfo');" disabled="">
-							<option value="0">Select a Stop</option>
+							<option value="0" disabled selected>Select a Stop</option>
 						</select>
 					</div>
 				</dd>
@@ -71,7 +71,7 @@
         <div id="realTimeResultsContainer" name="realTimeResultsContainer" class="realtime-results"> 
             <dl class="mini-module">
             <h2 style="text-align:center;">
-                <button onclick="saveFavorites();" id="btnSave" style="border:none; background-color:green; color:black; visibility: hidden;">&#x271A; Add to favorites</button>
+                <button onclick="saveFavorites();" id="btnSave" style="border:none; background-color: lightgreen; color:black; visibility: hidden;">&#x2764; Add to favorites</button>
             </h2>
             <label id="message" style="font-size: large;"></label>
 		        <dd>

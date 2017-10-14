@@ -56,12 +56,11 @@
 
    function checkFirstUse()
     {
-//			TransitMaster.StopTimes({arrivals: true, headingLabel: "Arrival"});        $('#simplemenu').sidr();
+        $('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-
-            initApp();
-            askRating();
+        //initApp();
+        //askRating();
     }
 
 function askRating()
@@ -72,8 +71,8 @@ function askRating()
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
   storeAppURL: {
-                ios: '1225698349',
-                android: 'market://details?id=com.kc.withads'
+                ios: '1296110225',
+                android: 'market://details?id=com.arlington.free'
                }
 };
  
@@ -99,12 +98,9 @@ function CreateXmlHttp() {
    }
 
 function LoadRouteInfo(iCodeID,method) {
-    if (iCodeID == 0) {
         document.getElementById('btnSave').style.visibility = "hidden";
         document.getElementById('realTimeResultsContainer').style.display = "none";
-        document.getElementById('stopSelect').setAttribute("disabled", "");
-    }
-    else {
+        var stopDropdownList = document.getElementById('stopSelect');
         var myXmlHttp = CreateXmlHttp();
         myXmlHttp.onreadystatechange = function () {
             if (myXmlHttp.readyState == 4) {
@@ -112,11 +108,9 @@ function LoadRouteInfo(iCodeID,method) {
 
                 try {
 
-                    var stopDropdownList = document.getElementById('stopSelect');
                     if (stopDropdownList) {
-
                         stopDropdownList.removeAttribute('disabled');
-                    }
+                    }   
                 } catch (error) {
 
                     // log error
@@ -125,9 +119,9 @@ function LoadRouteInfo(iCodeID,method) {
         }
         myXmlHttp.open("GET", "https://www.commuterpage.com/shared/services/get_realtime.cfc?&method=" + method + "&codeid=" + iCodeID);
         myXmlHttp.send(null);
+        $("#stopSelect").val('0');
         $("span").remove();
         $(".dropList").select2();
-    }
    }
 
 

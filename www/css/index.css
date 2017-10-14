@@ -26,7 +26,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-    background-color: #f2d223;
+    background-color: #f7e78f;
 }
 
 div#fullpage {
@@ -177,6 +177,11 @@ select.ui-select div.ui-btn
 
 ul.realtime-results-mappingoptions{
     display: none;
+}
+
+dd
+{
+    margin: 0 1vw 0 1vw;
 }
 
 #refresh{
