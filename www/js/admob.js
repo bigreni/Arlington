@@ -85,6 +85,12 @@ function askRating()
 AppRate.promptForRating(false);
 }
 
+function loadFaves()
+{
+    window.ga.trackView('Favorites');
+    window.location = "Favorites.html";
+}
+
 var autoRefreshState = 0;
 
 function CreateXmlHttp() {
