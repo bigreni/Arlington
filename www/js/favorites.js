@@ -1,6 +1,5 @@
 function loadFavorites()
 {
-    $('#simplemenu').sidr();
     var favStop = localStorage.getItem("Favorites");
     var arrFaves = favStop.split("|");
     var arrStops = null;
@@ -13,27 +12,6 @@ function loadFavorites()
         text = '<li><button onclick=removeFavorite(' + i + '); style="background-color:red; border:none;float:right;">&#x2718;</button><a href="javascript:loadArrivals(' + arrIds[0] + ',' + arrIds[1] +')"; class="langOption"><h4 class="selectLanguage">' + arrStops[1] + '</h4></a></li>';
 	    $("#lstFaves").append(text);
     }
-}
-
-function saveFavorites()
-{
-    var favStop = localStorage.getItem("Favorites");
-    var newFave = $('#route option:selected').val() + ">" + $("#stopSelect option:selected").val() + ":" + $('#route option:selected').text() + " > " + $("#stopSelect option:selected").text();
-        if (favStop == null)
-        {
-            favStop = newFave;
-        }   
-        else if(favStop.indexOf(newFave) == -1)
-        {
-            favStop = favStop + "|" + newFave;               
-        }
-        else
-        {
-            $("#message").text('Stop is already favorited!!');
-            return;
-        }
-        localStorage.setItem("Favorites", favStop);
-        $("#message").text('Stop added to favorites!!');
 }
 
 function removeFavorite(index)
