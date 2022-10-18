@@ -41,8 +41,8 @@
 <body>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
-        document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/arlington/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
-        //document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        // document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/arlington/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
     </script>
             <div id="screen" class="splashscreen" style="display: none"></div>
 		        <script>
@@ -54,7 +54,8 @@
             };
             //document.getElementById("screen").innerHTML = 'Loading... ';
             document.getElementById("screen").style.display = 'block';
-        </script>    <div id="fullpage" data-role="page">
+        </script>
+    <div id="fullpage" data-role="page">
 		<div id="contentBox" class="box">
         <form>
 			<dl class="accs-form-list">
@@ -63,23 +64,25 @@
 						<label class="accs-form-label accs-hidden" for="route">Route:</label>
 						<select class="dropList" id="route" name="route" onchange="LoadRouteInfo(this.value,'direction');" >
 							<option value="0" selected disabled>Select a Route</option>
-	                        <option value="41">ART 41 - Columbia Pike-Ballston-Court House</option>
-	                        <option value="42">ART 42 - Ballston-Pentagon</option>
-	                        <option value="43">ART 43 - Courthouse-Rosslyn-Crystal City</option>
-	                        <option value="45">ART 45 - Columbia Pike-Sequoia-Rosslyn</option>
-	                        <option value="51">ART 51 - Ballston - Virginia Hospital Center</option>
-	                        <option value="52">ART 52 - Ballston - Virginia Hospital Center - East Falls Church</option>
-	                        <option value="53">ART 53 - Ballston Metro-Old Glebe-East Falls Church-Westover</option>
-	                        <option value="54">ART 54 - Dominion Hills - East Falls Church</option>
-	                        <option value="55">ART 55 - East Falls Church – Lee Highway – Rosslyn</option>
-	                        <option value="61">ART 61 - Rosslyn-Court House Metro Shuttle</option>
-	                        <option value="62">ART 62 - Ballston Metro to Court House Metro</option>
-	                        <option value="74">ART 74 - Arl. Village-Arl. View-Pentagon City</option>
-	                        <option value="75">ART 75 - Shirlington - Wakefield HS - Ballston - Virginia Square</option>
-	                        <option value="77">ART 77 - Shirlington-Lyon Park-Court House</option>
-	                        <option value="84">ART 84 - Douglas Park-Nauck-Pentagon City</option>
-	                        <option value="87">ART 87 - Pentagon-Army Navy Drive-Shirlington</option>
-	                        <option value="92">ART 92 - Crystal City-Long Bridge Park/Boeing-Pentagon</option>
+                            <option value="41">ART 41 - Arlington Mill-Ballston-Crthous</option>
+                            <option value="42">ART 42 - Ballston-Pentagon-Pentagon Cty</option>
+                            <option value="43">ART 43 - Courthouse-Rosslynn-Crystal Cty</option>
+                            <option value="45">ART 45 - Arlington Mill -Sequoia-Rosslyn</option>
+                            <option value="51">ART 51 - Ballston-Virginia Hosp- Langston</option>
+                            <option value="52">ART 52 - Ballston-VA Hosp-E Flls Chrch</option>
+                            <option value="53">ART 53 - Ballston-Old Glebe-E Flls Chrch</option>
+                            <option value="55">ART 55 - Rosslyn-East Falls Church</option>
+                            <option value="61">ART 61 - Rosslyn-Court House Met Shuttle</option>
+                            <option value="62">ART 62 - Court House Met-Lorcum-Ballston</option>
+                            <option value="72">ART 72 - Rock Spring-Ballston-Shirlingtn</option>
+                            <option value="74">ART 74 - Arlington Vlg-Arlington Vw-Pent</option>
+                            <option value="75">ART 75 - Shirlingtn-Ballstn-Virginia Sq</option>
+                            <option value="77">ART 77 - Shirlingtn-Lyon Park-Courthouse</option>
+                            <option value="84">ART 84 - Douglas Prk-Green Vly-Pntgn Cty</option>
+                            <option value="87">ART 87 - Shirlingtn-Army Navy Dr-Pentagn</option>
+                            <option value="87A">ART 87A - 26th St S &amp; S Troy St-Pentagon</option>
+                            <option value="87P">ART 87P - S Lang St-Pentagon</option>
+                            <option value="87X">ART 87X - Pentagon-Shirlington Express</option>
 	               		</select>
                		</div>
 				
@@ -105,7 +108,8 @@
             </dl>
         </div>
 </div>
-</div>
+
+</div>
     <div id="footer">
       <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
       <div class="row" id="bottomNav">

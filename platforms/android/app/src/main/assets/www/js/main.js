@@ -41,10 +41,12 @@
             document.getElementById("screen").style.display = 'none';
         });
         document.addEventListener('onAdLoaded', function (data) {
-            AdMob.showInterstitial();
+            document.getElementById("screen").style.display = 'none';
         });
         document.addEventListener('onAdPresent', function (data) { });
-        document.addEventListener('onAdLeaveApp', function (data) { });
+        document.addEventListener('onAdLeaveApp', function (data) { 
+            document.getElementById("screen").style.display = 'none';
+        });
         document.addEventListener('onAdDismiss', function (data) { 
             document.getElementById("screen").style.display = 'none';    
         });
@@ -56,10 +58,10 @@
 
     function loadInterstitial() {
         if ((/(android|windows phone)/i.test(navigator.userAgent))) {
-            //AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
-            document.getElementById("screen").style.display = 'none';     
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
+            //document.getElementById("screen").style.display = 'none';     
         } else if ((/(ipad|iphone|ipod)/i.test(navigator.userAgent))) {
-            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
             //document.getElementById("screen").style.display = 'none';     
         } else
         {
@@ -69,13 +71,10 @@
 
    function checkFirstUse()
     {
-        //$('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-        //window.ga.startTrackerWithId('UA-88579601-3', 1, function(msg) {
-        //    window.ga.trackView('Home');
-        //});    
         initApp();
+        checkPermissions();
         askRating();
         //document.getElementById("screen").style.display = 'none';
     }
@@ -87,10 +86,32 @@
         document.getElementById("screen").style.display = 'none';
     }
 
+    function checkPermissions(){
+        const idfaPlugin = cordova.plugins.idfa;
+    
+        idfaPlugin.getInfo()
+            .then(info => {
+                if (!info.trackingLimited) {
+                    return info.idfa || info.aaid;
+                } else if (info.trackingPermission === idfaPlugin.TRACKING_PERMISSION_NOT_DETERMINED) {
+                    return idfaPlugin.requestPermission().then(result => {
+                        if (result === idfaPlugin.TRACKING_PERMISSION_AUTHORIZED) {
+                            return idfaPlugin.getInfo().then(info => {
+                                return info.idfa || info.aaid;
+                            });
+                        }
+                    });
+                }
+            });
+    }    
+
 function askRating()
 {
-  AppRate.preferences = {
-  openStoreInApp: true,
+cordova.plugins.AppRate.setPreferences = {
+    reviewType: {
+        ios: 'AppStoreReview',
+        android: 'InAppBrowser'
+        },
   useLanguage:  'en',
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
@@ -103,8 +124,21 @@ function askRating()
 AppRate.promptForRating(false);
 }
 
+function showAd()
+{
+    document.getElementById("screen").style.display = 'block';     
+    if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+        AdMob.isInterstitialReady(function(isready){
+            if(isready) 
+                AdMob.showInterstitial();
+        });
+    }
+    document.getElementById("screen").style.display = 'none'; 
+}
+
 function loadFaves()
 {
+    showAd();
     window.location = "Favorites.html";
 }
 
@@ -147,16 +181,22 @@ function LoadRouteInfo(iCodeID,method) {
                 }
             }
         }
-        myXmlHttp.open("GET", "https://www.commuterpage.com/shared/services/get_realtime.cfc?&method=" + method + "&codeid=" + iCodeID);
+        myXmlHttp.open("GET", "https://webservices.commuterpage.com/rest/realtime/" + method + "/" + iCodeID + "/" + getTimestamp());
         myXmlHttp.send(null);
         $("#stopSelect").val('0');
         $("span").remove();
         $(".dropList").select2();
    }
 
+   function getTimestamp() {
+	var now = new Date();
+	var utcSecondsSinceEpoch = Math.round(now.getTime() / 1000);
+	return utcSecondsSinceEpoch;
+}  
 
 function LoadRouteDetails(method) {
   
+   showAd(); 
    var routeStop;
    var iCodeID;
    var myDate = new Date();
